@@ -1,0 +1,91 @@
+  <br>
+  <h1 id="cartHead" style="text-align: center;margin: 2%;">Your Cart</h1>
+
+  <div>
+
+    <br>
+    <h4 style="margin: 2%;font-style: italic;">Cart Items</h4>
+    <table>
+
+      <tr>
+        <th></th>
+        <th >Items</th>
+        <th>Price/Item</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th>Remove Item</th>
+      </tr>
+
+      <tr *ngFor="let cartItem of cart; let i = index">
+        <td> <img [src]="cartItem[0].orderItem.menuItem.itemPic.picName" [alt]="cartItem[0].orderItem.menuItem.itemPic.picType" width="100" height="100"> </td>
+        <td style="text-align: left;"> 
+            <span style="border-bottom: white;">{{cartItem[0].orderItem.menuItem.itemName}}: {{cartItem[0].orderItem.menuItem.itemPrice | currency: 'USD' }}</span>
+          <p *ngFor="let ingredientPack of cartItem">
+            <ng-container *ngIf="ingredientPack.ingredient">
+              <span style="border-bottom: white;">{{ingredientPack.ingredient.ingredientName}} x {{ingredientPack.ingredientCount}} = </span>
+              <span style="border-bottom: white;">{{ (ingredientPack.ingredient.cost * ingredientPack.ingredientCount) | currency:'USD' }}</span>
+            </ng-container>
+          </p>
+        </td>
+        <td>
+          <span style="border-bottom: white;">{{ (subtotals[i] / cartItem[0].orderItem.itemCount) | currency: 'USD' }}</span>
+        </td>
+        <td style="vertical-align: middle;">
+          <span style="font-size: 24pt; vertical-align: middle;">x {{cartItem[0].orderItem.itemCount}} </span>
+          <span style="vertical-align: middle;">
+            <button style="margin: 2px;" type="button" class="btn btn-secondary" (click)="increaseCount(cartItem)">+</button>
+            <span *ngIf="cartItem[0].orderItem.itemCount > 1" ><button type="button" class="btn btn-secondary" (click)="decreaseCount(cartItem)">-</button> </span>
+          </span>
+        </td>
+        <td>{{subtotals[i] | currency: 'USD'}}</td>
+        <td><button type="button" class="btn btn-danger" (click)="removeFromCart(cartItem)">remove from cart</button></td>
+      </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h4 style="margin: 2%; font-style: italic;">Checkout</h4>
+    <table>
+      <tr>
+        <th>Delivery/Pickup</th>
+        <th>Payment Method</th>
+        <th>Order Total</th>
+        <th>Submit Order</th>
+      </tr>
+
+      <tr>
+        <td>
+          <select class="form-select form-select-sm" name="deliveries" id="deliveries" [(ngModel)]="delivery">
+            <option [ngValue]="false">Pickup</option>
+            <option [ngValue]="true">Delivery</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-select form-select-sm" name="payments" id="payments" [(ngModel)]="paymentType">
+            <option [ngValue]="1">Cash</option>
+          </select>
+        </td>
+        <td>{{total | currency: 'USD'}}</td>
+        <td *ngIf="user && cart.length; else userBlock">
+          <button  (click)="submitOrder()">submit order</button>
+        </td>
+        <ng-template #userBlock>
+          <td *ngIf="!user; else cartBlock">
+            Please sign in to place order.
+          </td>
+          <ng-template #cartBlock>
+            <td>
+              Cannot submit empty order.
+            </td>
+
+          </ng-template>
+        </ng-template>
+        
+      </tr>
+    </table>
+</div>
+
+
+    
+       

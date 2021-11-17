@@ -1,0 +1,62 @@
+/* body{
+  background-color:lightskyblue;
+}
+
+h2{
+  color: salmon;
+}
+
+
+#addQuantity{
+  background-color: seagreen;
+}
+
+#removeQuantity{
+  background-color: red;
+}
+
+
+
+td{
+  color:maroon;
+}
+
+
+
+#removeItem{
+  color:aquamarine;
+} */
+
+div {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+table {
+  width: 50%;
+  margin: 0% 25%;
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #A98163;
+  padding: 5px;
+  border-bottom: 2px solid black;
+  white-space: nowrap;
+  color: white;
+}
+
+td {
+  border-bottom: 1px solid black;
+  padding: 5px;
+  white-space: nowrap;
+  background-color: #ec9c54;
+}
+
+label {
+  padding: 5px;
+}

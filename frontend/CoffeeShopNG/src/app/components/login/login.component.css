@@ -1,0 +1,32 @@
+
+label {
+    text-align: right;
+
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+button {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 130px;
+    height: 40px;
+}
+
+button:hover{
+    background: rgb(218, 82, 102);
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+[class="form-label"]{
+    text-align: left;
+}
+
+[class="col-sm-12"]{
+    text-align: center;
+}
